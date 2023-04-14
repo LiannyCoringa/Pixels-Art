@@ -55,3 +55,14 @@ for (let index = 1; index <= 5; index += 1) {
 }
 
 paletteOne.classList.add('selected');
+const selectedClass = () => {
+  const paletasDeCores = document.querySelectorAll('.color');
+  for (let paleta of paletasDeCores) {
+    paleta.addEventListener('click', (event) => {
+      const selected = document.querySelector('.selected');
+      selected.classList.remove('selected');
+      event.target.classList.add('selected');
+    })
+  }
+}
+selectedClass();
