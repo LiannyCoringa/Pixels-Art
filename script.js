@@ -66,3 +66,14 @@ const selectedClass = () => {
   }
 }
 selectedClass();
+
+const pintura = () => {
+  const pixels = document.querySelectorAll('.pixel');
+  for (let pixel of pixels) {
+    pixel.addEventListener('click', (event) => {
+      const selected = document.querySelector('.selected');
+      event.target.style.backgroundColor = selected.style.backgroundColor;
+    })
+  }
+}
+pintura();
