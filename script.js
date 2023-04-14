@@ -77,3 +77,14 @@ const pintura = () => {
   }
 }
 pintura();
+
+const clearButton = () => {
+  const clear = document.querySelector('#clear-board');
+  clear.addEventListener('click', () => {
+    const pixels = document.querySelectorAll('.pixel');
+    for (let pixel of pixels) {
+      pixel.style.backgroundColor = 'white';
+    };
+  });
+};
+clearButton();
