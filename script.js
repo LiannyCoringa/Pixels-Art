@@ -46,13 +46,12 @@ button.addEventListener('click', () => {
 });
 
 const pixelSection = document.getElementById('pixel-board');
-for (let index = 1; index <= 5; index += 1) {
-  for (let index = 1; index <= 5; index += 1) {
+for (let index = 0; index < 25; index += 1) {
     const pixels = document.createElement('div');
     pixels.className = 'pixel';
+    pixels.id = index;
     pixelSection.appendChild(pixels);
   }
-}
 
 paletteOne.classList.add('selected');
 const selectedClass = () => {
@@ -67,24 +66,36 @@ const selectedClass = () => {
 }
 selectedClass();
 
-const pintura = () => {
+pinturas = {};
   const pixels = document.querySelectorAll('.pixel');
   for (let pixel of pixels) {
     pixel.addEventListener('click', (event) => {
       const selected = document.querySelector('.selected');
       event.target.style.backgroundColor = selected.style.backgroundColor;
+      pinturas[event.target.id] = event.target.style.backgroundColor;
+      localStorage.setItem('pixelBoard', JSON.stringify(pinturas));
     })
   }
-}
-pintura();
 
-const clearButton = () => {
+
   const clear = document.querySelector('#clear-board');
   clear.addEventListener('click', () => {
     const pixels = document.querySelectorAll('.pixel');
     for (let pixel of pixels) {
       pixel.style.backgroundColor = 'white';
+      localStorage.removeItem('pixelBoard');
+      pinturas[pixel.id] = 'white';
     };
   });
-};
-clearButton();
+
+  for (let index = 0; index < 25; index += 1) {
+    if (localStorage.getItem('pixelBoard') === null) {
+      const elementPixel = document.getElementById(index);
+      elementPixel.style.backgroundColor = 'white';
+    } else {
+      if (JSON.parse(localStorage.getItem('pixelBoard'))[index]) {
+        const elementPixel = document.getElementById(index)
+        elementPixel.style.backgroundColor = JSON.parse(localStorage.getItem('pixelBoard'))[index];
+      }
+    }
+  }
