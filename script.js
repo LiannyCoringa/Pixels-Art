@@ -46,11 +46,20 @@ button.addEventListener('click', () => {
 });
 
 const pixelSection = document.getElementById('pixel-board');
-for (let index = 0; index < 25; index += 1) {
+for (let index = 1; index <= 25; index += 1) {
     const pixels = document.createElement('div');
     pixels.className = 'pixel';
     pixels.id = index;
     pixelSection.appendChild(pixels);
+  }
+
+for (let index = 1; index <= 25; index += 1) {
+  const element = document.getElementById(index);
+  if (localStorage.getItem('pixelBoard') === null) {
+    element.style.backgroundColor = 'white';
+  } else {
+    element.style.backgroundColor = JSON.parse(localStorage.getItem('pixelBoard'))[index];
+    }
   }
 
 paletteOne.classList.add('selected');
@@ -72,11 +81,12 @@ pinturas = {};
     pixel.addEventListener('click', (event) => {
       const selected = document.querySelector('.selected');
       event.target.style.backgroundColor = selected.style.backgroundColor;
-      pinturas[event.target.id] = event.target.style.backgroundColor;
+      addObj(pinturas, event.target.id, event.target.style.backgroundColor);
       localStorage.setItem('pixelBoard', JSON.stringify(pinturas));
     })
   }
 
+  const addObj = (object, key, value) => object[key] = value;
 
   const clear = document.querySelector('#clear-board');
   clear.addEventListener('click', () => {
@@ -84,18 +94,7 @@ pinturas = {};
     for (let pixel of pixels) {
       pixel.style.backgroundColor = 'white';
       localStorage.removeItem('pixelBoard');
-      pinturas[pixel.id] = 'white';
+      pinturas = {};
     };
   });
 
-  for (let index = 0; index < 25; index += 1) {
-    if (localStorage.getItem('pixelBoard') === null) {
-      const elementPixel = document.getElementById(index);
-      elementPixel.style.backgroundColor = 'white';
-    } else {
-      if (JSON.parse(localStorage.getItem('pixelBoard'))[index]) {
-        const elementPixel = document.getElementById(index)
-        elementPixel.style.backgroundColor = JSON.parse(localStorage.getItem('pixelBoard'))[index];
-      }
-    }
-  }
