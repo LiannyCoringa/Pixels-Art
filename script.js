@@ -98,3 +98,26 @@ pinturas = {};
     };
   });
 
+  const input = document.getElementById('board-size');
+  const buttonVQV = document.getElementById('generate-board');
+  buttonVQV.addEventListener('click', () => {
+    const inputReturn = input.value * input.value;
+    if (inputReturn <= 0) {
+      alert `Board inválido!`;
+    } else {
+      const pixelElement = document.querySelector('#pixel-board');
+      for (let index = 1; index <= 25; index += 1) {
+        const pixelsElement = document.getElementById(index);
+        pixelElement.removeChild(pixelsElement);
+      }
+      for (let index = 1; index <= inputReturn; index += 1) {
+        const pixels = document.createElement('div');
+        pixels.className = 'pixel';
+        pixels.id = index;
+        pixels.style.backgroundColor = 'white';
+        localStorage.removeItem('pixelBoard');
+        pinturas = {};
+        pixelSection.appendChild(pixels);
+      }
+    }
+  })
