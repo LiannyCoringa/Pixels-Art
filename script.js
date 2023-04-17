@@ -46,12 +46,22 @@ button.addEventListener('click', () => {
 });
 
 const pixelSection = document.getElementById('pixel-board');
-for (let index = 1; index <= 25; index += 1) {
+let tamanho = JSON.parse(localStorage.getItem('boardSize'));
+if (localStorage.getItem('boardSize') === null) {
+  for (let index = 1; index <= 25; index += 1) {
     const pixels = document.createElement('div');
     pixels.className = 'pixel';
     pixels.id = index;
     pixelSection.appendChild(pixels);
   }
+} else {
+  for (let index = 1; index <= tamanho; index += 1) {
+    const pixels = document.createElement('div');
+    pixels.className = 'pixel';
+    pixels.id = index;
+    pixelSection.appendChild(pixels);
+  }
+}
 
 for (let index = 1; index <= 25; index += 1) {
   const element = document.getElementById(index);
@@ -120,6 +130,7 @@ pinturas = {};
           pinturas = {};
           pixelSection.appendChild(pixels);
         }
+        localStorage.setItem('boardSize', JSON.stringify(25));
       } else if (input.value >= 50) {
         for (let index = 1; index <= 2500; index += 1) {
           const pixels = document.createElement('div');
@@ -130,6 +141,7 @@ pinturas = {};
           pinturas = {};
           pixelSection.appendChild(pixels);
         }
+        localStorage.setItem('boardSize', JSON.stringify(2500));
       } else {
         for (let index = 1; index <= inputReturn; index += 1) {
           const pixels = document.createElement('div');
@@ -140,6 +152,7 @@ pinturas = {};
           pinturas = {};
           pixelSection.appendChild(pixels);
         }
+        localStorage.setItem('boardSize', JSON.stringify(inputReturn));
       }
     }
     })
