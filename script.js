@@ -129,6 +129,7 @@ pinturas = {};
           localStorage.removeItem('pixelBoard');
           pinturas = {};
           pixelSection.appendChild(pixels);
+          location.reload();
         }
         localStorage.setItem('boardSize', JSON.stringify(25));
       } else if (input.value >= 50) {
@@ -140,6 +141,7 @@ pinturas = {};
           localStorage.removeItem('pixelBoard');
           pinturas = {};
           pixelSection.appendChild(pixels);
+          location.reload();
         }
         localStorage.setItem('boardSize', JSON.stringify(2500));
       } else {
@@ -151,6 +153,7 @@ pinturas = {};
           localStorage.removeItem('pixelBoard');
           pinturas = {};
           pixelSection.appendChild(pixels);
+          location.reload();
         }
         localStorage.setItem('boardSize', JSON.stringify(inputReturn));
       }
