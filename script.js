@@ -110,14 +110,36 @@ pinturas = {};
         const pixelsElement = document.getElementById(index);
         pixelElement.removeChild(pixelsElement);
       }
-      for (let index = 1; index <= inputReturn; index += 1) {
-        const pixels = document.createElement('div');
-        pixels.className = 'pixel';
-        pixels.id = index;
-        pixels.style.backgroundColor = 'white';
-        localStorage.removeItem('pixelBoard');
-        pinturas = {};
-        pixelSection.appendChild(pixels);
+      if (input.value <= 5) {
+        for (let index = 1; index <= 25; index += 1) {
+          const pixels = document.createElement('div');
+          pixels.className = 'pixel';
+          pixels.id = index;
+          pixels.style.backgroundColor = 'white';
+          localStorage.removeItem('pixelBoard');
+          pinturas = {};
+          pixelSection.appendChild(pixels);
+        }
+      } else if (input.value >= 50) {
+        for (let index = 1; index <= 2500; index += 1) {
+          const pixels = document.createElement('div');
+          pixels.className = 'pixel';
+          pixels.id = index;
+          pixels.style.backgroundColor = 'white';
+          localStorage.removeItem('pixelBoard');
+          pinturas = {};
+          pixelSection.appendChild(pixels);
+        }
+      } else {
+        for (let index = 1; index <= inputReturn; index += 1) {
+          const pixels = document.createElement('div');
+          pixels.className = 'pixel';
+          pixels.id = index;
+          pixels.style.backgroundColor = 'white';
+          localStorage.removeItem('pixelBoard');
+          pinturas = {};
+          pixelSection.appendChild(pixels);
+        }
       }
     }
-  })
+    })
